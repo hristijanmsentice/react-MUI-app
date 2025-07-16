@@ -97,7 +97,7 @@ const Todo = () => {
 		}
 	};
 	const numChecked = useMemo(() => {
-		return (lists.filter(s => s.isCompleted).length / lists.length) * 100
+		return lists.length ? ((lists.filter(s => s.isCompleted).length / lists.length) * 100) : 0
 	}, [lists])
 	return (
 		<div className="lists-grid">
