@@ -1,0 +1,14 @@
+.main-login-container{
+    /* background-image: url('../react.svg'); */
+    height: 400px;
+    width: 100% !important;
+}
+.login-main {
+    background-image: url('/public/cards-background.jpg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.custom-text-field label{
+    color: white !important;
+}
