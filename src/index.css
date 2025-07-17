@@ -69,7 +69,7 @@ button:focus-visible {
 .lists-grid{
   min-height: 100vh;
   height: auto;
-  background-image: url('/public/cards-background.jpg');
+  background-image: url('/cards-background.jpg');
 }
 .list-card-container {
   border: 2px solid white !important;

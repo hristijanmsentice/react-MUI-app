@@ -92,7 +92,7 @@ const Login = () => {
 								}}
 							>
 								<img
-									src="/public/logo.png"
+									src="/logo.png"
 									style={{ height: "80px", width: "80px" }}
 								/>
 								<div style={{ textAlign: "justify", marginTop: '20px' }}>

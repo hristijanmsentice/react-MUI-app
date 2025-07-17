@@ -54,7 +54,7 @@ function ResponsiveAppBar({ pathname }) {
 		<AppBar position="static">
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
-					<img src="/public/logo.png" style={{height: '50px', width: '50px'}}/>
+					<img src="/logo.png" style={{height: '50px', width: '50px'}}/>
 					<Typography
 						variant="h6"
 						noWrap

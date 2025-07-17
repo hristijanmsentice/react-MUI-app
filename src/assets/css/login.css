@@ -4,7 +4,7 @@
     width: 100% !important;
 }
 .login-main {
-    background-image: url('/public/cards-background.jpg');
+    background-image: url('/cards-background.jpg');
     display: flex;
     justify-content: center;
     align-items: center;
