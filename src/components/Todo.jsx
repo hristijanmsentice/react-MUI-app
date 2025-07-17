@@ -4,6 +4,9 @@ import { Button, Grid, Card } from "@mui/material";
 import { green } from "@mui/material/colors";
 import Filters from "./Filters";
 import { useNavigate } from "react-router-dom";
+import ToggleView from "./ToggleView";
+import GridView from "./GridView";
+
 const Todo = () => {
 	const [lists, setLists] = useState([]);
 	const navigate = useNavigate();
@@ -43,7 +46,7 @@ const Todo = () => {
 		setSearch(value);
 	};
 	useEffect(() => {
-		if(!localStorage.getItem('user')) navigate('/login')
+		if (!localStorage.getItem("user")) navigate("/login");
 		if (localStorage.getItem("lists"))
 			setLists(JSON.parse(localStorage.getItem("lists")));
 	}, []);
@@ -100,8 +103,14 @@ const Todo = () => {
 		}
 	};
 	const numChecked = useMemo(() => {
-		return lists.length ? ((lists.filter(s => s.isCompleted).length / lists.length) * 100) : 0
-	}, [lists])
+		return lists.length
+			? (lists.filter((s) => s.isCompleted).length / lists.length) * 100
+			: 0;
+	}, [lists]);
+	const [view, setView] = useState("grid");
+	const changeView = (view) => {
+		setView(view);
+	};
 	return (
 		<div className="lists-grid">
 			<Grid
@@ -130,6 +139,18 @@ const Todo = () => {
 					Add new List
 				</Button>
 			</Grid>
+			<Grid
+				container
+				size={10}
+				sx={{
+					display: "flex",
+					justifyContent: "end",
+					alignContent: "center",
+					padding: "0px 3.5% 0px 3.5%",
+				}}
+			>
+				<ToggleView view={view} changeView={changeView} />
+			</Grid>
 			{filteredLists.length ? (
 				<>
 					<Grid
@@ -152,17 +173,25 @@ const Todo = () => {
 										justifyContent: "center",
 									}}
 								>
-									<List
-										assignList={assignList}
-										list={list}
-										removeAssignment={removeAssignment}
-										removeItemFromList={removeItemFromList}
-										saveList={saveList}
-										checklist={checklist}
-									/>
+									{view === "grid" &&
+										<List
+											assignList={assignList}
+											list={list}
+											removeAssignment={removeAssignment}
+											removeItemFromList={removeItemFromList}
+											saveList={saveList}
+											checklist={checklist}
+										/>
+									}
 								</Grid>
 							);
 						})}
+						{
+							view !== 'grid' && 
+							<>
+								<GridView key={lists} lists={lists} checklist={checklist} removeItemFromList={removeItemFromList} saveList={saveList}/>
+							</>
+						}
 					</Grid>
 				</>
 			) : (
@@ -191,9 +220,17 @@ const Todo = () => {
 									color: "#717171",
 								}}
 							>
-								{!lists.length
-									? <span>'There are no lists added. Click <span style={{color:"black", fontWeight: 600}}>"Add new lists"</span> button to add one.</span>
-									: "There are no lists with current filters!"}
+								{!lists.length ? (
+									<span>
+										'There are no lists added. Click{" "}
+										<span style={{ color: "black", fontWeight: 600 }}>
+											"Add new lists"
+										</span>{" "}
+										button to add one.
+									</span>
+								) : (
+									"There are no lists with current filters!"
+								)}
 							</div>
 						</Card>
 					</div>
