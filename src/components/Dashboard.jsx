@@ -8,6 +8,7 @@ const Dashboard = () => {
 	const [emails, setEmails] = useState([]);
   const navigate = useNavigate();
 	useEffect(() => {
+		if(!localStorage.getItem('user')) navigate('/login')
 		if (localStorage.getItem("lists"))
 			setLists(JSON.parse(localStorage.getItem("lists")));
 		if (localStorage.getItem("emails"))

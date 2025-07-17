@@ -16,8 +16,6 @@ function App() {
       <CssBaseline/>
       <ResponsiveAppBar pathname={pathname}/>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/todo" element={<Todo />} />
         <Route path="/dashboard" element={<Dashboard />} />

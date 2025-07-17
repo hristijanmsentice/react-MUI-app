@@ -3,8 +3,10 @@ import List from "./List";
 import { Button, Grid, Card } from "@mui/material";
 import { green } from "@mui/material/colors";
 import Filters from "./Filters";
+import { useNavigate } from "react-router-dom";
 const Todo = () => {
 	const [lists, setLists] = useState([]);
+	const navigate = useNavigate();
 	const [filter, setFilter] = useState("All");
 	const [search, setSearch] = useState("");
 	const filterLists = () => {
@@ -41,6 +43,7 @@ const Todo = () => {
 		setSearch(value);
 	};
 	useEffect(() => {
+		if(!localStorage.getItem('user')) navigate('/login')
 		if (localStorage.getItem("lists"))
 			setLists(JSON.parse(localStorage.getItem("lists")));
 	}, []);
